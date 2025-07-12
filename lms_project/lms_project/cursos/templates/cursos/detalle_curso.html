@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ curso.titulo }}{% endblock %}
+
+{% block content %}
+<h2>{{ curso.titulo }}</h2>
+<p>{{ curso.descripcion }}</p>
+<h3>Lecciones</h3>
+<ol>
+    {% for leccion in lecciones %}
+        <li><strong>{{ leccion.titulo }}</strong>: {{ leccion.contenido }}</li>
+    {% empty %}
+        <li>Este curso aún no tiene lecciones.</li>
+    {% endfor %}
+</ol>
+<a href="{% url 'lista_cursos' %}">← Volver a cursos</a>
+{% endblock %}
