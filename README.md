@@ -62,4 +62,4 @@ git push origin --delete feature/nombre-funcionalidad  # Eliminar remoto
 No trabajes directamente en develop ni master.
 Usa commits descriptivos.
 Haz pull frecuentemente.
-Revisa el código de tus colegas antes de aprobar.
+Revisa el código de antes de aprobar.
