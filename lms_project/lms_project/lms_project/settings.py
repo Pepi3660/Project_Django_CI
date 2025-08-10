@@ -52,11 +52,15 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'lms_project.urls'
+LOGIN_URL = 'login'  # URL for the login page
+LOGIN_REDIRECT_URL = 'inicio'  # URL to redirect to after login
+LOGOUT_REDIRECT_URL = 'inicio'  # URL to redirect to after logout
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],  # Directory for custom templates
+        # This allows you to create a 'templates' directory at the project level    
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,3 +126,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

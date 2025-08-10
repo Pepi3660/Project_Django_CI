@@ -4,11 +4,23 @@
 
 {% block content %}
 <h2>Cursos Disponibles</h2>
-<ul>
+<ul class="lista-cursos">
     {% for curso in cursos %}
+    <div class="cursos">
         <li>
-            <a href="{% url 'detalle_curso' curso.id %}">{{ curso.titulo }}</a> - {{ curso.fecha_publicacion }}
+        <div class="curso_logo">
+            {% if curso.imagen %}
+                <img class="curso_img" src="{{ curso.imagen.url }}" alt="{{ curso.titulo }}">
+            {% endif %}
+        </div>
+            <hr class="division">
+        <div class="datos_curso">
+            <a href="{% url 'detalle_curso' curso.id %}">{{ curso.titulo }}</a> 
+            <br>
+            {{ curso.fecha_publicacion }}
+        </div>
         </li>
+    </div>
     {% empty %}
         <li>No hay cursos registrados.</li>
     {% endfor %}

@@ -4,6 +4,8 @@
 
 {% block content %}
 <h2>{{ curso.titulo }}</h2>
+<div class="container_leccion">
+<img class="curso_img" src="{{curso.imagen.url}}" alt="{{curso.titulo}}">
 <p>{{ curso.descripcion }}</p>
 <h3>Lecciones</h3>
 <ol>
@@ -13,5 +15,6 @@
         <li>Este curso aún no tiene lecciones.</li>
     {% endfor %}
 </ol>
-<a href="{% url 'lista_cursos' %}">← Volver a cursos</a>
+<a class="volver-cursos" href="{% url 'lista_cursos' %}">← Volver a cursos</a>
+</div>
 {% endblock %}

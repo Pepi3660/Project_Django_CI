@@ -1,19 +1,36 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'cursos/styles.css' %}">
     <title>{% block title %}Sistema de Gestión de Aprendizaje{% endblock %}</title>
 </head>
 <body>
-    <header>
-        <h1><a href="{% url 'inicio' %}">Sistema de Gestión de Aprendizaje</a></h1>
-        <nav>
-            <a href="{% url 'lista_cursos' %}">Cursos</a>
-        </nav>
+    <header class="container-header">
+        <h1><a class="header" href="{% url 'inicio' %}">Sistema de Gestión de Aprendizaje</a></h1>
+         <nav class="navbar">
+        {% if user.is_authenticated %}
+            <p class="welcome">Hola, {{ user.username }}</p>
+
+            {%if user.perfilusuario.rol == 'profesor' %}
+                <a class="nav-link" href="{% url 'crear_curso' %}">Crear Curso</a>
+            {% endif %}
+
+
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <a class="nav-link" href="#" onclick="event.preventDefault(); this.closest('form').submit();">Cerrar sesión</a>
+            </form>
+        {% else %}
+            <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>  
+            <a class="nav-link" href="{% url 'registrar_usuario' %}">Registrarse</a>
+        {% endif %}
+    </nav>
         <hr>
     </header>
 
-    <main>
+    <main class="content">
         {% block content %}
         {% endblock %}
     </main>
